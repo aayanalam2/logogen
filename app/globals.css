@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-lavender: #9fa1ff;
+  --brand-lavender-light: #b5baff;
+  --brand-sky: #aee2ff;
+  --brand-mint: #d9f9df;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  min-height: 100dvh;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass {
+    @apply backdrop-blur-xl bg-white/20 border border-white/30 shadow-[0_8px_32px_rgba(159,161,255,0.15)];
+  }
+  .glass-strong {
+    @apply backdrop-blur-2xl bg-white/30 border border-white/40 shadow-[0_8px_32px_rgba(159,161,255,0.2)];
+  }
+  .glass-hover {
+    @apply transition-all duration-200 hover:bg-white/30 hover:border-white/50 hover:shadow-[0_8px_40px_rgba(159,161,255,0.25)];
+  }
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.1) 25%,
+      rgba(255,255,255,0.3) 50%,
+      rgba(255,255,255,0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
