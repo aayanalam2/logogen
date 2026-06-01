@@ -24,28 +24,28 @@ export default function LogoResult({
   };
 
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex flex-col gap-10">
       <div>
-        <p className="text-xs font-medium text-zinc-400 uppercase tracking-widest mb-2">
+        <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.15em] mb-2">
           Your logo
         </p>
-        <h2 className="text-xl font-semibold text-zinc-900 tracking-tight">
+        <h2 className="font-display italic text-[1.75rem] leading-tight text-white">
           {businessName}
         </h2>
       </div>
 
-      {/* Logo */}
+      {/* Logo — white frame for AI-generated white-background image */}
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
-        className="rounded-xl border border-zinc-100 bg-zinc-50 overflow-hidden flex items-center justify-center p-6"
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="rounded-xl bg-white p-8 aspect-square flex items-center justify-center"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image}
           alt={`${businessName} logo`}
-          className="w-56 h-56 object-contain"
+          className="w-full h-full object-contain"
         />
       </motion.div>
 
@@ -54,12 +54,12 @@ export default function LogoResult({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="flex flex-col gap-2"
+        className="flex flex-col gap-2.5"
       >
         <Button onClick={handleDownload} size="lg" className="w-full">
           Download PNG
         </Button>
-        <div className="flex gap-2">
+        <div className="flex gap-2.5">
           <Button variant="secondary" onClick={onRegenerate} size="lg" className="flex-1">
             Try again
           </Button>

@@ -23,17 +23,17 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-zinc-900 text-white hover:bg-zinc-800 active:bg-zinc-950 active:scale-[0.99]",
+      "bg-brand-lavender text-zinc-950 hover:bg-brand-lavender-light active:opacity-90 font-semibold",
     secondary:
-      "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300 active:scale-[0.99]",
+      "border border-zinc-700 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200 active:scale-[0.99]",
     ghost:
-      "text-zinc-400 hover:text-zinc-700 hover:bg-zinc-50 active:scale-[0.99]",
+      "text-zinc-600 hover:text-zinc-300 active:scale-[0.99]",
   };
 
   const sizes = {
-    sm: "px-3.5 py-2 text-sm",
+    sm: "px-3.5 py-2 text-xs",
     md: "px-5 py-2.5 text-sm",
-    lg: "px-6 py-3 text-sm",
+    lg: "px-5 py-3 text-sm",
   };
 
   return (

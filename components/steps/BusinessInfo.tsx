@@ -13,15 +13,17 @@ export default function BusinessInfo({ state, onChange, onNext }: BusinessInfoPr
   const canContinue = state.businessName.trim().length > 0;
 
   return (
-    <div className="flex flex-col gap-7">
-      <div>
-        <p className="text-xs font-medium text-zinc-400 uppercase tracking-widest mb-2">Step 1 of 4</p>
-        <h2 className="text-xl font-semibold text-zinc-900 tracking-tight">What&apos;s your business called?</h2>
-      </div>
+    <div className="flex flex-col gap-10">
+      <h2 className="font-display italic text-[1.75rem] leading-tight text-white">
+        What&apos;s the name?
+      </h2>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-zinc-500" htmlFor="biz-name">
+      <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-2.5">
+          <label
+            className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.15em]"
+            htmlFor="biz-name"
+          >
             Business name
           </label>
           <input
@@ -32,14 +34,18 @@ export default function BusinessInfo({ state, onChange, onNext }: BusinessInfoPr
             onKeyDown={(e) => e.key === "Enter" && canContinue && onNext()}
             placeholder="Acme, Luminary, Pulse…"
             maxLength={60}
-            className="border border-zinc-200 rounded-lg px-4 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-300 outline-none focus:border-brand-lavender focus:ring-2 focus:ring-brand-lavender/20 transition-all"
+            className="bg-transparent border-b border-zinc-800 focus:border-brand-lavender pb-2.5 text-white text-base outline-none transition-colors duration-200 placeholder:text-zinc-700"
             autoFocus
           />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-zinc-500" htmlFor="tagline">
-            Tagline <span className="text-zinc-300 font-normal">(optional)</span>
+        <div className="flex flex-col gap-2.5">
+          <label
+            className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.15em]"
+            htmlFor="tagline"
+          >
+            Tagline{" "}
+            <span className="normal-case tracking-normal text-zinc-700">(optional)</span>
           </label>
           <input
             id="tagline"
@@ -49,7 +55,7 @@ export default function BusinessInfo({ state, onChange, onNext }: BusinessInfoPr
             onKeyDown={(e) => e.key === "Enter" && canContinue && onNext()}
             placeholder="Built for tomorrow"
             maxLength={80}
-            className="border border-zinc-200 rounded-lg px-4 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-300 outline-none focus:border-brand-lavender focus:ring-2 focus:ring-brand-lavender/20 transition-all"
+            className="bg-transparent border-b border-zinc-800 focus:border-brand-lavender pb-2.5 text-white text-base outline-none transition-colors duration-200 placeholder:text-zinc-700"
           />
         </div>
       </div>
