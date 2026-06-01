@@ -2,8 +2,8 @@ import Wizard from "@/components/Wizard";
 
 export default function Home() {
   return (
-    <main className="min-h-dvh w-full bg-brand-gradient flex items-center justify-center px-4 py-16">
-      <div className="w-full max-w-[540px]">
+    <main className="min-h-dvh bg-[#09090b] flex items-center justify-center px-6 py-16">
+      <div className="w-full max-w-sm">
         <Wizard />
       </div>
     </main>

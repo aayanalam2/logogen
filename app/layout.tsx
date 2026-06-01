@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
+import { Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -9,9 +17,8 @@ const geistSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Logogen — AI Logo Generator",
-  description:
-    "Generate beautiful logos for your brand in seconds using AI. Choose your industry, audience, and colour theme.",
+  title: "Logogen",
+  description: "Generate a distinctive logo for your brand.",
 };
 
 export default function RootLayout({
@@ -22,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} antialiased`}
+        className={`${instrumentSerif.variable} ${geistSans.variable} antialiased`}
       >
         {children}
       </body>
