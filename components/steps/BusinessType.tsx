@@ -14,19 +14,19 @@ export default function BusinessTypeStep({ state, onChange, onNext, onBack }: Bu
   const canContinue = state.businessType !== null;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-7 sm:gap-10">
       <h2 className="font-display italic text-[1.75rem] leading-tight text-white">
         What&apos;s your industry?
       </h2>
 
-      <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-1">
         {BUSINESS_TYPES.map((type) => {
           const selected = state.businessType === type.value;
           return (
             <button
               key={type.value}
               onClick={() => onChange({ businessType: type.value as BusinessType })}
-              className={`text-left text-sm py-2.5 px-2 rounded transition-all duration-150 ${
+              className={`text-left text-sm py-3 px-2 rounded transition-all duration-150 ${
                 selected
                   ? "text-white shadow-[inset_2px_0_0_#9FA1FF] bg-white/[0.04]"
                   : "text-zinc-500 hover:text-zinc-300"

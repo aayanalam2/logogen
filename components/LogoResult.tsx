@@ -24,7 +24,7 @@ export default function LogoResult({
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-6 sm:gap-10">
       <div>
         <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.15em] mb-2">
           Your logo
@@ -39,7 +39,7 @@ export default function LogoResult({
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="rounded-xl bg-white p-8 aspect-square flex items-center justify-center"
+        className="rounded-xl bg-white p-4 sm:p-8 aspect-square flex items-center justify-center"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
