@@ -13,12 +13,12 @@ export default function BusinessInfo({ state, onChange, onNext }: BusinessInfoPr
   const canContinue = state.businessName.trim().length > 0;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-7 sm:gap-10">
       <h2 className="font-display italic text-[1.75rem] leading-tight text-white">
         What&apos;s the name?
       </h2>
 
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-5 sm:gap-7">
         <div className="flex flex-col gap-2.5">
           <label
             className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.15em]"

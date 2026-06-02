@@ -103,21 +103,18 @@ export default function Wizard() {
 
   return (
     <div className="w-full">
-      {/* Top bar: wordmark + step counter */}
-      <div className="flex items-center justify-between mb-10">
-        <span className="text-zinc-200 text-sm font-semibold tracking-tight">
-          logogen
-        </span>
-        {!isResultStep && (
+      {/* Step counter */}
+      {!isResultStep && (
+        <div className="flex justify-end mb-6 sm:mb-10">
           <span className="font-mono text-[11px] text-zinc-700 tabular-nums">
             {String(step + 1).padStart(2, "0")} / 04
           </span>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Progress hairline */}
       {!isResultStep && (
-        <div className="flex gap-1 mb-12">
+        <div className="flex gap-1 mb-8 sm:mb-12">
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}

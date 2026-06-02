@@ -21,7 +21,7 @@ export default function ColorThemeStep({
   const canGenerate = state.colorTheme !== null;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-7 sm:gap-10">
       <h2 className="font-display italic text-[1.75rem] leading-tight text-white">
         Colour palette
       </h2>

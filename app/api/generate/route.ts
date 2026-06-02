@@ -3,11 +3,11 @@ import { buildPrompt } from "@/lib/buildPrompt";
 import type { WizardState } from "@/lib/types";
 
 export async function POST(req: NextRequest) {
-  const apiKey = process.env.STABILITY_API_KEY;
+  const apiKey = process.env.TOGETHER_API_KEY;
 
   if (!apiKey) {
     return NextResponse.json(
-      { error: "API key not configured. Add STABILITY_API_KEY to .env.local." },
+      { error: "API key not configured. Add TOGETHER_API_KEY to .env.local." },
       { status: 500 }
     );
   }
@@ -25,24 +25,24 @@ export async function POST(req: NextRequest) {
 
   const prompt = buildPrompt(state);
 
-  const form = new FormData();
-  form.append("prompt", prompt);
-  form.append("output_format", "png");
-  form.append("aspect_ratio", "1:1");
-
-  let stabilityRes: Response;
+  let togetherRes: Response;
   try {
-    stabilityRes = await fetch(
-      "https://api.stability.ai/v2beta/stable-image/generate/core",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          Accept: "image/*",
-        },
-        body: form,
-      }
-    );
+    togetherRes = await fetch("https://api.together.xyz/v1/images/generations", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "black-forest-labs/FLUX.1-schnell",
+        prompt,
+        width: 1024,
+        height: 1024,
+        steps: 4,
+        n: 1,
+        response_format: "base64",
+      }),
+    });
   } catch {
     return NextResponse.json(
       { error: "Failed to reach the generation service. Check your network." },
@@ -50,28 +50,26 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  if (!stabilityRes.ok) {
-    if (stabilityRes.status === 402) {
+  if (!togetherRes.ok) {
+    if (togetherRes.status === 401) {
       return NextResponse.json(
-        { error: "Free credits exhausted. Add credits at platform.stability.ai." },
-        { status: 402 }
-      );
-    }
-    if (stabilityRes.status === 401) {
-      return NextResponse.json(
-        { error: "Invalid API key. Check STABILITY_API_KEY in .env.local." },
+        { error: "Invalid API key. Check TOGETHER_API_KEY in .env.local." },
         { status: 401 }
       );
     }
-    const body = await stabilityRes.text().catch(() => "");
+    const body = await togetherRes.text().catch(() => "");
     return NextResponse.json(
-      { error: `Generation failed (${stabilityRes.status}). ${body}`.slice(0, 200) },
-      { status: stabilityRes.status }
+      { error: `Generation failed (${togetherRes.status}). ${body}`.slice(0, 200) },
+      { status: togetherRes.status }
     );
   }
 
-  const imageBuffer = await stabilityRes.arrayBuffer();
-  const base64 = Buffer.from(imageBuffer).toString("base64");
+  const json = await togetherRes.json();
+  const base64 = json?.data?.[0]?.b64_json;
+
+  if (!base64) {
+    return NextResponse.json({ error: "No image returned from generation service." }, { status: 500 });
+  }
 
   return NextResponse.json({ image: `data:image/png;base64,${base64}` });
 }
